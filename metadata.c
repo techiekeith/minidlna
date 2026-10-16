@@ -390,6 +390,7 @@ GetAudioMetadata(const char *path, const char *name)
 	if( song.year )
 		xasprintf(&m.date, "%04d-01-01", song.year);
 	m.duration = duration_str(song.song_length);
+/*
 	if( song.title && *song.title )
 	{
 		m.title = trim(song.title);
@@ -404,7 +405,11 @@ GetAudioMetadata(const char *path, const char *name)
 		free_flags |= FLAG_TITLE;
 		m.title = strdup(name);
 		strip_ext(m.title);
+*/
+		m.title = name;
+/*
 	}
+*/
 	for( i = ROLE_START; i < N_ROLE; i++ )
 	{
 		if( song.contributor[i] && *song.contributor[i] )
@@ -1448,10 +1453,12 @@ GetVideoMetadata(const char *path, const char *name)
 	{
 		if( readtags((char *)path, &video, &file, "en_US", "asf") == 0 )
 		{
+/*
 			if( video.title && *video.title )
 			{
 				m.title = escape_tag(trim(video.title), 1);
 			}
+*/
 			if( video.genre && *video.genre )
 			{
 				m.genre = escape_tag(trim(video.genre), 1);
@@ -1488,9 +1495,9 @@ GetVideoMetadata(const char *path, const char *name)
 			while( (tag = av_dict_get(ctx->metadata, "", tag, AV_DICT_IGNORE_SUFFIX)) )
 			{
 				//DEBUG DPRINTF(E_DEBUG, L_METADATA, "  %-16s: %s\n", tag->key, tag->value);
-				if( strcmp(tag->key, "title") == 0 )
+				/* if( strcmp(tag->key, "title") == 0 )
 					m.title = escape_tag(trim(tag->value), 1);
-				else if( strcmp(tag->key, "genre") == 0 )
+				else */ if( strcmp(tag->key, "genre") == 0 )
 					m.genre = escape_tag(trim(tag->value), 1);
 				else if( strcmp(tag->key, "artist") == 0 )
 					m.artist = escape_tag(trim(tag->value), 1);

@@ -1193,7 +1193,7 @@ callback(void *args, int argc, char **argv, char **azColName)
 		{
 			/* Video and audio album art is handled differently */
 			if( *mime == 'v' && (passed_args->filter & FILTER_RES) && !(passed_args->flags & FLAG_MS_PFS) ) {
-				ret = strcatf(str, "&lt;res protocolInfo=\"http-get:*:image/jpeg:DLNA.ORG_PN=JPEG_TN\"&gt;"
+				ret = strcatf(str, "&lt;res protocolInfo=\"http-get:*:image/jpeg:DLNA.ORG_PN=JPEG_SM\"&gt;"
 				                   "http://%s:%d/AlbumArt/%s-%s.jpg"
 				                   "&lt;/res&gt;",
 				                   lan_addr[passed_args->iface].str, runtime_vars.port, album_art, detailID);
