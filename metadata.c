@@ -318,7 +318,8 @@ GetAudioMetadata(const char *path, const char *name)
 		m.mime = strdup("audio/mpeg");
 	}
 	else if( ends_with(path, ".m4a") || ends_with(path, ".mp4") ||
-	         ends_with(path, ".aac") || ends_with(path, ".m4p") )
+	         ends_with(path, ".aac") || ends_with(path, ".m4p") ||
+		 ends_with(path, ".m4b") )
 	{
 		strcpy(type, "aac");
 		m.mime = strdup("audio/mp4");
